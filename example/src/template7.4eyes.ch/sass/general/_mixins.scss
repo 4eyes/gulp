@@ -1,0 +1,16 @@
+@function rem($size, $root-font-size : $base-font-size) {
+	@return ( $size / $root-font-size ) * 1rem;
+}
+
+@mixin rem($property, $size, $root-font-size : $base-font-size) {
+	#{$property}: $size;
+	#{$property}: rem($size, $root-font-size);
+}
+
+@mixin media($query) {
+	@if $ignoreMediaQueries == 0 {
+		@media (#{$query}) {
+			@content;
+		}
+	}
+}

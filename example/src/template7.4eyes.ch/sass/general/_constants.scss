@@ -1,0 +1,38 @@
+/**
+ * MEDIA QUERY
+ **/
+
+// Needed in rte.css
+$ignoreMediaQueries: 0;
+
+$min-width-desktop: 900px;
+$min-width-tablet: 600px;
+
+
+$desktop-only: 'min-width: #{$min-width-desktop}';
+$desktop-and-tablet: 'min-width: #{$min-width-tablet}';
+$tablet-only: 'min-width: #{$min-width-tablet}) and (max-width: #{$min-width-desktop - 1}';
+$tablet-and-smartphone: 'max-width: #{$min-width-desktop - 1}';
+$smartphone-only: 'max-width: #{$min-width-tablet - 1}';
+
+
+/**
+ * COLORS (Naming suggestions under: http://chir.ag/projects/name-that-color/)
+ **/
+
+$white: #FFFFFF;
+$black: #000000;
+
+
+$font-family-regular: Arial, sans-serif;
+$font-family-secondary: 'Dummy', Arial, sans-serif;
+
+$font-weight-light: 300;
+$font-weight-regular: 500;
+$font-weight-bold: 700;
+
+$base-font-size: 10px;
+
+$font-size-small: 11px;
+$font-size-normal: 12px;
+$font-size-large: 13px;

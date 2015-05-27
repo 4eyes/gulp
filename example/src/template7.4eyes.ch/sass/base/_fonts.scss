@@ -1,0 +1,10 @@
+@font-face {
+	font-family: 'Dummy';
+	src: url('fonts/dummy.eot');
+	src: url('fonts/dummy.eot?#iefix') format('embedded-opentype');
+	src: url('fonts/dummy.woff2') format('woff2');
+	src: url('fonts/dummy.woff') format('woff');
+	src: url('fonts/dummy.ttf') format('truetype');
+	font-weight: $font-weight-regular;
+	font-style: normal;
+}
