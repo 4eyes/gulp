@@ -143,6 +143,19 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 			}
 		}
 	},
+	/**
+	 * FONTCOPY
+	 */
+	fontcopy: {
+		watch: [
+			sourcePath + '/fonts/**',
+		],
+		sources: [
+			sourcePath + '/fonts/**',
+			'!' + sourcePath + '/fonts/**/*.json'
+		],
+		dest: buildPath + '/css/fonts'
+	}
 
 	/**
 	 * CSSINLINER
@@ -166,18 +179,61 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 	//		removeLinkTags: true
 	//	}
 	// },
-
 	/**
-	 * FONTCOPY
+	 * LITMUS
 	 */
-	fontcopy: {
-		watch: [
-			sourcePath + '/fonts/**',
-		],
-		sources: [
-			sourcePath + '/fonts/**',
-			'!' + sourcePath + '/fonts/**/*.json'
-		],
-		dest: buildPath + '/css/fonts'
-	}
+	//litmus: {
+	//	sources: [
+	//		buildPath + '/html/newsletter.inline.html'
+	//	],
+	//	options: {
+	//		username: 'tech@4eyes.ch',
+	//		password: 'E7Dm4tFtRXRWqN3v',
+	//		url: 'https://4eyes1.litmus.com',
+	//		applications: [
+	//			'android22',
+	//			'android4',
+	//			'aolonline',
+	//			'androidgmailapp',
+	//			'ffaolonline',
+	//			'appmail7',
+	//			'appmail8',
+	//			'blackberry8900',
+	//			'colorblind',
+	//			'ipadmini',
+	//			'ipad',
+	//			'barracuda',
+	//			'spamassassin3',
+	//			'gmailnewspam',
+	//			'gmailnew',
+	//			'ffgmailnew',
+	//			'chromegmailnew',
+	//			'iphone5s',
+	//			'iphone5sios8',
+	//			'iphone6',
+	//			'iphone6plus',
+	//			'notes6',
+	//			'notes7',
+	//			'notes8',
+	//			'notes85',
+	//			'ol2000',
+	//			'ol2002',
+	//			'ol2003',
+	//			'ol2007',
+	//			'ol2010',
+	//			'ol2011',
+	//			'ol2013',
+	//			'ol2015',
+	//			'outlookcom',
+	//			'ffoutlookcom',
+	//			'chromeoutlookcom',
+	//			'plaintext',
+	//			'thunderbirdlatest',
+	//			'yahoo',
+	//			'ffyahoo',
+	//			'chromeyahoo',
+	//			'windowsphone8'
+	//		]
+	//	}
+	//}
 });

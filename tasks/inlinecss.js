@@ -13,7 +13,6 @@ configLoader(taskName, function(projectName, conf) {
 	global.x4e.tasks.watch.push({taskName: taskName + '-' + projectName, options: conf.watch});
 
 	var task = function () {
-		// Process and minify all SASS files
 		return gulp.src(conf.sources)
 			.pipe(plumber({
 				errorHandler: function (err) {
