@@ -145,6 +145,29 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 	},
 
 	/**
+	 * CSSINLINER
+	 */
+
+	//inlinecss: {
+	//	watch: [
+	//		sourcePath + '/sass/**',
+	//		sourcePath + '/handlebars/pages/*.hbs',
+	//		sourcePath + '/handlebars/partials/*.hbs',
+	//		sourcePath + '/handlebars/partials/**/*.hbs'
+	//	],
+	//	sources : [
+	//		buildPath + '/html/newsletter.html'
+	//	],
+	//	dest: buildPath + '/html',
+	//	options: {
+	//		applyStyleTags: true,
+	//		applyLinkTags: true,
+	//		removeStyleTags: true,
+	//		removeLinkTags: true
+	//	}
+	// },
+
+	/**
 	 * FONTCOPY
 	 */
 	fontcopy: {
