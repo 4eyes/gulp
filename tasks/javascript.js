@@ -79,8 +79,31 @@ configLoader(taskName, function(projectName, conf) {
 			}))
 		);
 
-		return tasks;
+		tasks.push(gulp.src(conf.handlebars.sources)
+			.pipe(plumber({
+				errorHandler: function (err) {
+					global.x4e.tasks.error[taskName + '-' + projectName + '-handlebars'] = true;
+					notify.onError({
+						title: "Gulp: " + taskName + '-handlebars',
+						//icon: notifyInfo.icon,
+						message: "<%= error.message %>"
+					})(err);
 
+					this.emit('end');
+				}
+			}))
+			.pipe(plumber.stop())
+			.pipe(gulp.dest(conf.handlebars.dest))
+			.pipe(notify(function (files) {
+				if(global.x4e.tasks.error[taskName + '-' + projectName + '-handlebars']){
+					delete global.x4e.tasks.error[taskName + '-' + projectName + '-handlebars'];
+					return 'Javascript build back to normal';
+				}
+				return false;
+			}))
+		);
+
+		return tasks;
 	}
 
 	gulp.task(taskName + '-' + projectName, task);
