@@ -18,66 +18,39 @@ configLoader(taskName, function(projectName, conf) {
 
 	var task = function () {
 		var tasks = [];
-		tasks.push(gulp.src(conf.vendor.sources)
-			.pipe(plumber({
-				errorHandler: function (err) {
-					global.x4e.tasks.error[taskName + '-' + projectName + '-vendor'] = true;
-					notify.onError({
-						title: "Gulp: " + taskName + '-vendor',
-						//icon: notifyInfo.icon,
-						message: "<%= error.message %>"
-					})(err);
+		for (i = 0; i < conf.files.length; i++ ) {
+			var fileConf = conf.files[i];
+			tasks.push(gulp.src(fileConf.sources)
+					.pipe(plumber({
+						errorHandler: function (err) {
+							global.x4e.tasks.error[taskName + '-' + projectName + '-' + fileConf.filename] = true;
+							notify.onError({
+								title: "Gulp: " + taskName + '-' + fileConf.filename,
+								//icon: notifyInfo.icon,
+								message: "<%= error.message %>"
+							})(err);
 
-					this.emit('end');
-				}
-			}))
-			.pipe(order(conf.vendor.order))
-			.pipe(concat(conf.vendor.filename))
-			.pipe(gulp.dest(conf.custom.dest))
-			.pipe(gulpif(conf.vendor.minify, uglify(conf.uglify)))
-			.pipe(gulpif(conf.vendor.minify, rename(function(path){
-				path.basename += ".min";
-			})))
-			.pipe(plumber.stop())
-			.pipe(gulp.dest(conf.vendor.dest))
-			.pipe(notify(function (files) {
-				if(global.x4e.tasks.error[taskName + '-' + projectName + '-vendor']){
-					delete global.x4e.tasks.error[taskName + '-' + projectName + '-vendor'];
-					return 'Javascript build back to normal';
-				}
-				return false;
-			}))
-		);
-		tasks.push(gulp.src(conf.custom.sources)
-			.pipe(plumber({
-				errorHandler: function (err) {
-					global.x4e.tasks.error[taskName + '-' + projectName + '-custom'] = true;
-					notify.onError({
-						title: "Gulp: " + taskName + '-custom',
-						//icon: notifyInfo.icon,
-						message: "<%= error.message %>"
-					})(err);
-
-					this.emit('end');
-				}
-			}))
-			.pipe(order(conf.custom.order))
-			.pipe(concat(conf.custom.filename))
-			.pipe(gulp.dest(conf.custom.dest))
-			.pipe(gulpif(conf.custom.minify, uglify(conf.uglify)))
-			.pipe(gulpif(conf.custom.minify, rename(function(path){
-				path.basename += ".min";
-			})))
-			.pipe(plumber.stop())
-			.pipe(gulp.dest(conf.custom.dest))
-			.pipe(notify(function (files) {
-				if(global.x4e.tasks.error[taskName + '-' + projectName + '-custom']){
-					delete global.x4e.tasks.error[taskName + '-' + projectName + '-custom'];
-					return 'Javascript build back to normal';
-				}
-				return false;
-			}))
-		);
+							this.emit('end');
+						}
+					}))
+					.pipe(order(fileConf.order))
+					.pipe(concat(fileConf.filename))
+					.pipe(gulp.dest(fileConf.dest))
+					.pipe(gulpif(fileConf.minify.enabled, uglify(fileConf.minify.options)))
+					.pipe(gulpif(fileConf.minify.enabled, rename(function(path){
+						path.basename += ".min";
+					})))
+					.pipe(plumber.stop())
+					.pipe(gulp.dest(fileConf.dest))
+					.pipe(notify(function (files) {
+						if(global.x4e.tasks.error[taskName + '-' + projectName + '-' + fileConf.filename]){
+							delete global.x4e.tasks.error[taskName + '-' + projectName + '-' + fileconf.filename];
+							return 'Javascript build back to normal';
+						}
+						return false;
+					}))
+			);
+		}
 
 		tasks.push(gulp.src(conf.handlebars.sources)
 			.pipe(plumber({

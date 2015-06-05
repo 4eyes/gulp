@@ -50,35 +50,70 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 	/**
 	 * JAVASCRIPT
 	 */
+	/**
+	 * JAVASCRIPT
+	 */
 	javascript: {
 		watch: [
 			sourcePath + '/js/**'
 		],
-		vendor: {
-			minify: true,
-			filename: 'vendor.js',
+		files: [
+			{
+				filename: 'vendor.js',
+				sources: [
+					sourcePath + '/js/vendor/**'
+				],
+				order: [
+					sourcePath + '/js/vendor/jquery-2.1.3.js',
+					sourcePath + '/js/vendor/handlebars-3.0.3.js',
+					sourcePath + '/js/vendor/**'
+				],
+				dest: buildPath + '/js',
+				minify: {
+					enabled: true,
+					options: {
+						preserveComments: 'some'
+					}
+				}
+			},
+			{
+				filename: 'main.js',
+				sources: [
+					sourcePath + '/js/custom/**'
+				],
+				order: [
+					sourcePath + '/js/custom/**'
+				],
+				dest: buildPath +'/js',
+				minify: {
+					enabled: true,
+					options: {
+						preserveComments: 'some'
+					}
+				}
+			},
+			{
+				filename: 'lteie9.js',
+				sources: [
+					sourcePath + '/js/lteie9/**'
+				],
+				order: [
+					sourcePath + '/js/lteie9/**'
+				],
+				dest: buildPath +'/js',
+				minify: {
+					enabled: true,
+					options: {
+						preserveComments: 'some'
+					}
+				}
+			}
+		],
+		handlebars: {
 			sources: [
-				sourcePath + '/js/vendor/**'
+				sourcePath + '/js/handlebars/**'
 			],
-			order: [
-				sourcePath + '/js/vendor/jquery-2.1.3.js',
-				sourcePath + '/js/vendor/**'
-			],
-			dest: buildPath + '/js'
-		},
-		custom: {
-			minify: true,
-			filename: 'main.js',
-			sources: [
-				sourcePath + '/js/custom/**'
-			],
-			order: [
-				sourcePath + '/js/custom/**'
-			],
-			dest: buildPath +'/js'
-		},
-		uglify: {
-			preserveComments: 'some'
+			dest: buildPath + '/js/handlebars'
 		}
 	},
 
@@ -99,7 +134,10 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 			interlaced: false,
 			//svg
 			multipass: false,
-			svgoPlugins: []
+			svgoPlugins: [
+				{'removeDoctype': true},
+				{'removeXMLProcInst': false}
+			]
 		},
 		source: sourcePath + '/img/**',
 		dest: buildPath + '/img'
