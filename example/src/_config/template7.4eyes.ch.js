@@ -196,19 +196,24 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 			}
 		}
 	},
-	/**
-	 * FONTCOPY
-	 */
-	fontcopy: {
-		watch: [
-			sourcePath + '/fonts/**'
-		],
-		sources: [
-			sourcePath + '/fonts/**',
-			'!' + sourcePath + '/fonts/**/*.json'
-		],
-		dest: buildPath + '/css/fonts'
-	}
+    /**
+     * FILECOPY
+     */
+    filecopy: {
+        watch: [
+            sourcePath + '/fonts/**',
+            sourcePath + '/flash/**'
+        ],
+        bundles: {
+            fonts: {
+                sources: [
+                    sourcePath + '/fonts/**',
+                    '!' + sourcePath + '/fonts/**/*.json'
+                ],
+                dest: buildPath + '/css/fonts'
+            }
+        }
+    }
 
 	/**
 	 * CSSINLINER

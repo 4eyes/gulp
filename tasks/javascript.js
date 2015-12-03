@@ -18,7 +18,7 @@ configLoader(taskName, function(projectName, conf) {
 
 	var task = function () {
 		var tasks = [];
-		for (i = 0; i < conf.files.length; i++ ) {
+		for (var i = 0; i < conf.files.length; i++ ) {
 			var fileConf = conf.files[i];
 			tasks.push(gulp.src(fileConf.sources)
 					.pipe(plumber({
