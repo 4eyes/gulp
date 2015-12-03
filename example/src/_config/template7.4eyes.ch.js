@@ -135,8 +135,11 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 			//svg
 			multipass: false,
 			svgoPlugins: [
-				{'removeDoctype': true},
-				{'removeXMLProcInst': false}
+                {'removeDoctype': true},
+                {'removeXMLProcInst': false}
+                //{'cleanupIDs': false},
+                //{'removeUnknownsAndDefaults': false},
+                //{'collapseGroups': false}
 			]
 		},
 		source: sourcePath + '/img/**',
@@ -155,6 +158,18 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 		source: sourcePath + '/handlebars/pages/*.hbs',
 		dest: buildPath + '/html',
 		templateData: {},
+        handlebarsDataProvider: {
+            //Configuration for the data provider function 'pages'
+            pages: {
+                path: sourcePath + '/handlebars/pages/',
+                //Exclude regex-patterns or filenames
+                exclude: [
+                    'index.hbs'
+                    //Example for a regex
+                    /*/^001/g*/
+                ]
+            }
+        },
 		options: {
 			ignorePartials: false,
 			partials: {},
@@ -186,7 +201,7 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 	 */
 	fontcopy: {
 		watch: [
-			sourcePath + '/fonts/**',
+			sourcePath + '/fonts/**'
 		],
 		sources: [
 			sourcePath + '/fonts/**',

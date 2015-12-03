@@ -6,6 +6,7 @@ var rename              = require('gulp-rename');
 var prettify            = require('gulp-prettify');
 var requireDir 			= require('require-dir');
 var configLoader 		= require('../helpers/gulp/configLoader');
+var handlebarsDataProvider 		= require('../helpers/gulp/handlebarsDataProvider');
 
 var taskName = 'handlebars';
 var relBackPath = '../';
@@ -30,13 +31,12 @@ configLoader(taskName, function(projectName, conf){
 					this.emit('end');
 				}
 			}))
-			.pipe(handlebars(conf.templateData, conf.options))
+			.pipe(handlebars(handlebarsDataProvider(projectName, conf), conf.options))
 			.pipe(rename(function (path) {
 				path.extname = '.html';
 			}))
 			.pipe(plumber.stop())
 			.pipe(gulp.dest(conf.dest))
-			//.pipe(prettify(conf.prettify))
 			.pipe(notify(function (files) {
 				if(global.x4e.tasks.error[taskName + '-' + projectName]){
 					delete global.x4e.tasks.error[taskName + '-' + projectName];
