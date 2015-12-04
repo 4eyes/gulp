@@ -33,7 +33,7 @@ configLoader(taskName, function(projectName, conf) {
 							this.emit('end');
 						}
 					}))
-					.pipe(order(fileConf.order))
+					.pipe(order(fileConf.order.files, fileConf.order.options))
 					.pipe(concat(fileConf.filename))
 					.pipe(gulp.dest(fileConf.dest))
 					.pipe(gulpif(fileConf.minify.enabled, uglify(fileConf.minify.options)))

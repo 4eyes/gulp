@@ -63,11 +63,15 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 				sources: [
 					sourcePath + '/js/vendor/**'
 				],
-				order: [
-					sourcePath + '/js/vendor/jquery-2.1.3.js',
-					sourcePath + '/js/vendor/handlebars-3.0.3.js',
-					sourcePath + '/js/vendor/**'
-				],
+                order: {
+                    files: [
+                        'jquery-2.1.3.js',
+                        '**/*.js'
+                    ],
+                    options: {
+                        base: sourcePath + '/js/vendor/',
+                    }
+                },
 				dest: buildPath + '/js',
 				minify: {
 					enabled: true,
@@ -81,9 +85,14 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 				sources: [
 					sourcePath + '/js/custom/**'
 				],
-				order: [
-					sourcePath + '/js/custom/**'
-				],
+                order: {
+                    files: [
+                        '**/*.js'
+                    ],
+                    options: {
+                        base: sourcePath + '/js/custom/',
+                    }
+                },
 				dest: buildPath +'/js',
 				minify: {
 					enabled: true,
