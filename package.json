@@ -41,6 +41,7 @@
     "gulp-remember": "~0.3.0",
     "gulp-rename": "~1.2.2",
     "gulp-uglify": "~1.5.3",
+    "gulp-w3cjs": "^1.2.0",
     "path": "~0.12.7",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.5",
