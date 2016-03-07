@@ -1,9 +1,12 @@
 var gulp                = require('gulp');
+var gulpif              = require('gulp-if');
 var handlebars          = require('gulp-compile-handlebars');
 var plumber 			= require('gulp-plumber');
 var notify 				= require('gulp-notify');
 var rename              = require('gulp-rename');
 var prettify            = require('gulp-prettify');
+var w3cjs            	= require('gulp-w3cjs');
+var through2            = require('through2');
 var requireDir 			= require('require-dir');
 var configLoader 		= require('../helpers/gulp/configLoader');
 var handlebarsDataProvider 		= require('../helpers/gulp/handlebarsDataProvider');
@@ -37,6 +40,15 @@ configLoader(taskName, function(projectName, conf){
 			}))
 			.pipe(plumber.stop())
 			.pipe(gulp.dest(conf.dest))
+			.pipe(plumber())
+			.pipe(gulpif(conf.htmlvalidator.enabled, w3cjs(conf.htmlvalidator.options)))
+			.pipe(gulpif(conf.htmlvalidator.enabled, through2.obj(function (file, enc, cb){
+				cb(null, file);
+				if (!file.w3cjs.success){
+					file.pipe(notify('HTML validation error(s) found'));
+				}
+			})))
+			.pipe(plumber.stop())
 			.pipe(notify(function (files) {
 				if(global.x4e.tasks.error[taskName + '-' + projectName]){
 					delete global.x4e.tasks.error[taskName + '-' + projectName];

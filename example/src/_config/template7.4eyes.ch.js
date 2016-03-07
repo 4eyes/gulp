@@ -46,10 +46,6 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 			]
 		}
 	},
-
-	/**
-	 * JAVASCRIPT
-	 */
 	/**
 	 * JAVASCRIPT
 	 */
@@ -202,6 +198,14 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 				unformatted: ["a", "sub", "sup", "b", "i", "u"],
 				end_with_newline: true,
 				extra_liners: ["head","body","/html"]
+			}
+		},
+		//https://www.npmjs.com/package/gulp-w3cjs)
+		htmlvalidator: {
+			enabled: true,
+			options: {
+				//url: 'http://validator.w3.org/nu/',
+				//proxy: '',
 			}
 		}
 	},
