@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
     <title>{{projectName}} - Layouts</title>
     <meta charset="utf-8"/>
-    <meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <style type="text/css">
         body {
@@ -55,5 +55,10 @@
             {{/each}}
         </div>
     </div>
+    <script>
+        (function (window, $, undefined) {
+            $('iframe').attr('scrolling', 'no');
+        })(this, jQuery)
+    </script>
 </body>
 </html>
