@@ -65,7 +65,7 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
                         '**/*.js'
                     ],
                     options: {
-                        base: sourcePath + '/js/vendor/',
+                        base: sourcePath + '/js/vendor/'
                     }
                 },
 				dest: buildPath + '/js',
@@ -86,7 +86,7 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
                         '**/*.js'
                     ],
                     options: {
-                        base: sourcePath + '/js/custom/',
+                        base: sourcePath + '/js/custom/'
                     }
                 },
 				dest: buildPath +'/js',
@@ -102,9 +102,14 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 				sources: [
 					sourcePath + '/js/lteie9/**'
 				],
-				order: [
-					sourcePath + '/js/lteie9/**'
-				],
+				order: {
+					files: [
+						'**/*.js'
+					],
+					options: {
+						base: sourcePath + '/js/lteie9/'
+					}
+				},
 				dest: buildPath +'/js',
 				minify: {
 					enabled: true,

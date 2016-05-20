@@ -12,9 +12,7 @@ global.x4e = {
 		preInitial: [],
 		initial: [],
 		postInitial: [],
-		preWatch: [],
 		watch: [],
-		postWatch: [],
 		error: []
 	}
 };
@@ -41,26 +39,17 @@ gulp.task("watch", function() {
 gulp.task('default', function(cb) {
 	global.x4e.tasks.postInitial.push('watch');
 
-	//We have to implement this ugly solution because the runSequence method doesn't allow empty parameters at the currently.
-	if (global.x4e.tasks.preInitial.length && global.x4e.tasks.initial.length && global.x4e.tasks.postInitial.length) {
-		runSequence(global.x4e.tasks.preInitial, global.x4e.tasks.initial, global.x4e.tasks.postInitial, 'watch', cb);
+	var sequences = ['preInitial', 'initial', 'postInitial'],
+		args = []
+		;
+	//Push registered tasks to args array, if they are not empty
+	for (var i = 0; i < sequences.length; i++) {
+		if (global.x4e.tasks.hasOwnProperty(sequences[i]) && global.x4e.tasks[sequences[i]].length) {
+			args.push(global.x4e.tasks[sequences[i]]);
+		}
 	}
-	else if (global.x4e.tasks.initial.length && global.x4e.tasks.postInitial.length) {
-		runSequence(global.x4e.tasks.initial, global.x4e.tasks.postInitial, 'watch', cb);
-	}
-	else if (global.x4e.tasks.preInitial.length && global.x4e.tasks.postInitial.length) {
-		runSequence(global.x4e.tasks.preInitial, global.x4e.tasks.postInitial, 'watch', cb);
-	}
-	else if (global.x4e.tasks.preInitial.length && global.x4e.tasks.initial.length) {
-		runSequence(global.x4e.tasks.preInitial, global.x4e.tasks.initial, 'watch', cb);
-	}
-	else if (global.x4e.tasks.preInitial.length) {
-		runSequence(global.x4e.tasks.preInitial, 'watch', cb);
-	}
-	else if (global.x4e.tasks.initial.length) {
-		runSequence(global.x4e.tasks.initial, 'watch', cb);
-	}
-	else if (global.x4e.tasks.postInitial.length) {
-		runSequence(global.x4e.tasks.postInitial, 'watch', cb);
-	}
+	//Add multiple tasks at the end of args array
+	Array.prototype.push.apply(args, ['watch', cb]);
+	//Call runSequence with args as argument array
+	runSequence.apply(this, args);
 });
