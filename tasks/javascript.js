@@ -1,6 +1,7 @@
 var gulp 			= require('gulp');
 var gulpif 			= require('gulp-if');
 var plumber 		= require('gulp-plumber');
+var jshint	 		= require('gulp-jshint');
 var notify 			= require('gulp-notify');
 var order 			= require('gulp-order');
 var concat 			= require('gulp-concat');
@@ -33,6 +34,21 @@ configLoader(taskName, function(projectName, conf) {
 							this.emit('end');
 						}
 					}))
+					.pipe(gulpif(fileConf.jshint.enabled, jshint(conf.jshint.options)))
+					.pipe(gulpif(fileConf.jshint.enabled, notify(function (file) {
+						if (file && (!file.jshint || file.jshint.success)) {
+							// Don't show something if success
+							return false;
+						}
+
+						var errors = file.jshint.results.map(function (data) {
+							if (data.error) {
+								return "(" + data.error.line + ':' + data.error.character + ') ' + data.error.reason;
+							}
+						}).join("\n");
+
+						return file.relative + " (" + file.jshint.results.length + " errors)\n" + errors;
+					})))
 					.pipe(order(fileConf.order.files, fileConf.order.options))
 					.pipe(concat(fileConf.filename))
 					.pipe(gulp.dest(fileConf.dest))
