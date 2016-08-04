@@ -1,4 +1,6 @@
 (function (window, $, undefined) {
+	'use strict';
+
 	if($ === undefined) {
 		alert('Error: jQuery not loaded!');
 		return;
@@ -17,8 +19,8 @@
 			$(self.Selectors.imgToReplace)
 				.addClass('is-injecting')
 				.svgInject({
-					wrap: 'svg-wrap'
-					, paddingHack: true
+					wrap: 'svg-wrap',
+					paddingHack: true
 				});
 		}
 	});

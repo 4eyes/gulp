@@ -1,4 +1,6 @@
 (function (window, $, undefined) {
+	'use strict';
+
 	if($ === undefined) {
 		alert('Error: jQuery not loaded!');
 		return;
@@ -8,7 +10,7 @@
 
 	$(function(){
 		X4e.SvgInject.init();
-    });
+	});
 
 	$(document).ready(function(){
 
