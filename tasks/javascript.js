@@ -60,7 +60,7 @@ configLoader(taskName, function(projectName, conf) {
 					.pipe(gulp.dest(fileConf.dest))
 					.pipe(notify(function (files) {
 						if(global.x4e.tasks.error[taskName + '-' + projectName + '-' + fileConf.filename]){
-							delete global.x4e.tasks.error[taskName + '-' + projectName + '-' + fileconf.filename];
+							delete global.x4e.tasks.error[taskName + '-' + projectName + '-' + fileConf.filename];
 							return 'Javascript build back to normal';
 						}
 						return false;
