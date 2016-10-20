@@ -56,19 +56,18 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 			sourcePath + '/js/**'
 		],
 		files: [
-			//region vendor.js
+			//region head-vendor.js
 			{
-				filename: 'vendor.js',
+				filename: 'head-vendor.js',
 				sources: [
-					sourcePath + '/js/vendor/**'
+					sourcePath + '/js/head/vendor/**'
 				],
 				order: {
 					files: [
-						'jquery-2.1.3.js',
 						'**/*.js'
 					],
 					options: {
-						base: sourcePath + '/js/vendor/'
+						base: sourcePath + '/js/head/vendor/'
 					}
 				},
 				dest: buildPath + '/js',
@@ -83,18 +82,44 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 				}
 			},
 			//endregion
-			//region main.js
+			//region footer-vendor.js
 			{
-				filename: 'main.js',
+				filename: 'footer-vendor.js',
 				sources: [
-					sourcePath + '/js/custom/**'
+					sourcePath + '/js/footer/vendor/**'
+				],
+				order: {
+					files: [
+						'jquery-2.1.3.js'
+					],
+					options: {
+						base: sourcePath + '/js/footer/vendor/'
+					}
+				},
+				dest: buildPath + '/js',
+				minify: {
+					enabled: true,
+					options: {
+						preserveComments: 'some'
+					}
+				},
+				jshint: {
+					enabled: false
+				}
+			},
+			//endregion
+			//region footer-main.js
+			{
+				filename: 'footer-main.js',
+				sources: [
+					sourcePath + '/js/footer/main/**'
 				],
 				order: {
 					files: [
 						'**/*.js'
 					],
 					options: {
-						base: sourcePath + '/js/custom/'
+						base: sourcePath + '/js/footer/main/'
 					}
 				},
 				dest: buildPath + '/js',
@@ -222,23 +247,35 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 		],
 
 		//region Imagemin Options
-		// See: https://www.npmjs.com/package/gulp-imagemin#imagemin-options
 		options: {
-			//png
-			optimizationLevel: 6,
-			//jpg
-			progressive: false,
-			//gif
-			interlaced: false,
-			//svg
-			multipass: false,
-			svgoPlugins: [
-				{'removeDoctype': true},
-				{'removeXMLProcInst': false}
-				//{'cleanupIDs': false},
-				//{'removeUnknownsAndDefaults': false},
-				//{'collapseGroups': false}
-			]
+			// See: https://github.com/imagemin/imagemin-gifsicle
+			gifsicle: {
+				interlaced: true,
+				optimizationLevel: 3
+			},
+			// See https://github.com/imagemin/imagemin-jpegtran
+			jpegtran: {
+				progressive: true,
+				arithmetic: false
+			},
+			// See: https://github.com/imagemin/imagemin-optipng
+			optipng: {
+				optimizationLevel: 7,
+				bitDepthReduction: true,
+				colorTypeReduction: true,
+				paletteReduction: true
+			},
+			// See: https://github.com/imagemin/imagemin-svgo and https://github.com/svg/svgo#what-it-can-do
+			svgo: {
+				options: [
+					{'removeDoctype': true},
+					{'removeXMLProcInst': false},
+					{'convertStyleToAttrs': false}
+					//{'cleanupIDs': false},
+					//{'removeUnknownsAndDefaults': false},
+					//{'collapseGroups': false}
+				]
+			}
 		},
 		//endregion
 		source: sourcePath + '/img/**',

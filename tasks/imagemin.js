@@ -28,7 +28,14 @@ configLoader(taskName, function(projectName, conf){
 			}))
 			.pipe(changed(conf.dest))     // Ignore unchanged files
 			.pipe(gulp.dest(conf.dest))   // Export original file
-			.pipe(imagemin(conf.options)) // Optimize
+			.pipe(imagemin(
+				[
+					imagemin.gifsicle(conf.options.gifsicle),
+					imagemin.jpegtran(conf.options.jpegtran),
+					imagemin.optipng(conf.options.optipng),
+					imagemin.svgo(conf.options.svgo)
+				]
+			)) // Optimize
 			.pipe(plumber.stop())
 			.pipe(gulp.dest(conf.dest))   // Override original file with optimized
 			.pipe(notify(function (files) {
