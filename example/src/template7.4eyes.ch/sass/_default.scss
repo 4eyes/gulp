@@ -1,39 +1,17 @@
-@import "compass/css3";
+@import "vendor/foundation6/scss/foundation";
 
-/**
- * GENERAL
- */
+@include foundation-global-styles;
+@include foundation-flex-grid;
+@include foundation-visibility-classes;
+@include foundation-float-classes;
 
-@import "general/normalize";
-@import "general/mixins";
-
-/**
- * BASE
- */
-
+@import "base/functions";
+@import "base/mixins";
 @import "base/fonts";
 @import "base/tags";
 
-/**
- * FRAMEWORK
- */
-
-@import "framework/svginject";
-
-/**
- * LAYOUT
- */
 
 @import "layout/layout";
 
-/**
- * ATOM
- */
-
-@import "atom/atom";
-
-/**
- * MODULE
- */
 
 @import "module/module";

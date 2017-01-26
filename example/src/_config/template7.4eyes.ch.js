@@ -1,5 +1,7 @@
+var modulesBackPath = '../../gulp/node_modules/';
+
 var path = require('path');
-var extend = require('../../gulp/node_modules/extend');
+var extend = require(modulesBackPath + 'extend');
 
 var projectKey = 'template7.4eyes.ch';
 
@@ -27,26 +29,45 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 	},
 
 	/**
-	 * COMPASS
+	 * CSS
 	 */
-	compass: {
+	css: {
 		watch: [
 			sourcePath + '/sass/**'
 		],
 		sources: [
 			sourcePath + '/sass/**/*.scss'
 		],
-		minify: true,
-		//region Compass Options
-		options: {
-			sass: path.join(__dirname, '../' + sourcePath + '/sass'),
-			css: path.join(__dirname, '../' + buildPath + '/css'),
-			sourcemap: true,
-			comments: true,
-			style: 'expanded',
-			require: []
+		dest: buildPath + '/css',
+		plugins: {
+			//region sourcemaps
+			sourcemaps: true,
+			//endregion
+			//region sass
+			sass: {
+				//https://github.com/sass/node-sass#options
+				options: {
+					//Default: nested; Values: nested, expanded, compact, compressed
+					outputStyle: 'expanded',
+					//Default: 5; Used to determine how many digits after the decimal will be allowed.
+					precision: '5',
+					//Default false; Enables the line number and file where a selector is defined to be emitted into the compiled CSS as a comment. Useful for debugging, especially when using imports and mixins.
+					sourceComments: true
+				}
+			},
+			//endregion
+			//region postcss
+			postcss: {
+				plugins: {
+					//https://www.npmjs.com/package/autoprefixer
+					autoprefixer: require(modulesBackPath + 'autoprefixer')({
+						browsers: ['last 2 versions', 'ie >= 9', 'and_chr >= 2.3']
+					})
+				},
+				options: {}
+			}
+			//endregion
 		}
-		//endregion
 	},
 	/**
 	 * JAVASCRIPT
@@ -268,6 +289,7 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 			// See: https://github.com/imagemin/imagemin-svgo and https://github.com/svg/svgo#what-it-can-do
 			svgo: {
 				options: [
+					{'removeDimensions': true},
 					{'removeDoctype': true},
 					{'removeXMLProcInst': false},
 					{'convertStyleToAttrs': false}

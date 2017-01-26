@@ -1,0 +1,22 @@
+/**
+ * Helper functions
+ */
+
+@function pxToEm($px, $ref: $global-font-size) {
+	@return toEm(toPx($px) / toPx($ref));
+}
+@function pxToRem($px) {
+	@return toRem(toPx($px) / toPx($global-font-size));
+}
+@function pxToPc($px, $ref: $global-width) {
+	@return (toPx($px) / toPx($ref) * 100%);
+}
+@function toEm($val) {
+	@return ($val + 0em);
+}
+@function toRem($val) {
+	@return ($val + 0rem);
+}
+@function toPx($val) {
+	@return ($val + 0px);
+}
