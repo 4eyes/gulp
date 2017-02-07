@@ -1,13 +1,12 @@
-var modulesBackPath = '../../gulp/node_modules/';
+/*global modulesPath*/
 
-var path = require('path');
-var extend = require(modulesBackPath + 'extend');
+var gulpPathRelative = '../';
+var path = require(modulesPath + 'path');
+var extend = require(modulesPath + 'extend');
 
 var projectKey = 'template7.4eyes.ch';
-
-var gulpBackpath = '../';
-var buildPath = gulpBackpath + 'site/fileadmin/' + projectKey + '/templates/build';
-var sourcePath = gulpBackpath + 'src/' + projectKey;
+var buildPath = gulpPathRelative + 'site/fileadmin/' + projectKey + '/templates/build';
+var sourcePath = gulpPathRelative + 'src/' + projectKey;
 
 global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 	/**
@@ -60,7 +59,7 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 			postcss: {
 				plugins: {
 					//https://www.npmjs.com/package/autoprefixer
-					autoprefixer: require(modulesBackPath + 'autoprefixer')({
+					autoprefixer: require(modulesPath + 'autoprefixer')({
 						browsers: ['last 2 versions', 'ie >= 9', 'and_chr >= 2.3']
 					})
 				},
@@ -103,6 +102,32 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 				}
 			},
 			//endregion
+			//region head-main.js
+			{
+				filename: 'head-main.js',
+				sources: [
+					sourcePath + '/js/head/main/**'
+				],
+				order: {
+					files: [
+						'**/*.js'
+					],
+					options: {
+						base: sourcePath + '/js/head/main/'
+					}
+				},
+				dest: buildPath + '/js',
+				minify: {
+					enabled: true,
+					options: {
+						preserveComments: 'some'
+					}
+				},
+				jshint: {
+					enabled: true
+				}
+			},
+			//endregion
 			//region footer-vendor.js
 			{
 				filename: 'footer-vendor.js',
@@ -111,7 +136,9 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 				],
 				order: {
 					files: [
-						'jquery-2.1.3.js'
+						'jquery-2.1.3.js',
+						'foundation.core.js',
+						'foundation.util.mediaQuery.js'
 					],
 					options: {
 						base: sourcePath + '/js/footer/vendor/'
@@ -366,7 +393,7 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 		//region Htmlvalidator Options
 		//https://www.npmjs.com/package/gulp-w3cjs)
 		htmlvalidator: {
-			enabled: true,
+			enabled: false,
 			options: {
 				//url: 'http://validator.w3.org/nu/',
 				//proxy: '',

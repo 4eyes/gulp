@@ -1,3 +1,7 @@
+/* Defining global path variables */
+gulpPath = __dirname + '/';
+modulesPath = __dirname + '/node_modules/';
+
 var gulp = require('gulp');
 var runSequence = require('run-sequence');
 var requireDir = require('require-dir');
