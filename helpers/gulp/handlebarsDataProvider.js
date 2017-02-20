@@ -4,9 +4,9 @@ var extend = require('extend');
 var handlebarsDataProvider = function (projectName, conf) {
     var DefaultTemplateData = {
         init: function (conf) {
-            var templateData = conf.templateData;
+            var templateData = {};
             for (var property in this.Data) {
-                templateData[property] = this.Data[property](conf.handlebarsDataProvider[property], projectName);
+                templateData[property] = this.Data[property](conf[property], projectName);
             }
             return templateData;
         },
