@@ -9,7 +9,8 @@
 	var X4e = window.X4e || {};
 
 	$(function(){
-		X4e.SvgInject.init();
+		$(document).foundation();
+		X4e.FooHandler.init();
 	});
 
 	$(document).ready(function(){
