@@ -39,7 +39,7 @@
 		}
 	});
 
-	$.extend(Foo.prototype, {
+	$.extend(true, Foo.prototype, {
         Options: {
         },
         Selectors: {
