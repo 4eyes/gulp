@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <title>{{projectName}} - Layouts</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <style type="text/css">
+		body {
+			font-family: Arial, Sans-Serif;
+			background: white;
+			margin: 0;
+		}
+		h1 {
+			font-size: 30px;
+			margin: 0 25px 20px;
+		}
+		h2 {
+			font-size: 20px;
+		}
+		.center-wrap {
+			max-width: 1480px;
+			margin: 30px auto 0;
+		}
+		.iframe-wrap {
+			position: relative;
+			margin: 0 25px 30px;
+			float: left;
+			width: 320px;
+		}
+		iframe {
+			overflow: hidden;
+			width: 100%;
+			height: 500px;
+			border: 1px solid #1d1d1d;
+		}
+		.overlay-link {
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			top: 0;
+			left: 0;
+		}
+		.content-wrap:after {
+			display: block;
+			content: '';
+			clear: both;
+		}
+    </style>
+</head>
+<body>
+<div class="center-wrap">
+    <h1>Layouts</h1>
+	<div class="content-wrap">
+        {{#each pages}}
+            <div class="iframe-wrap">
+                <h2>{{file}}</h2>
+                <iframe src="../html/{{file}}"></iframe>
+                <a class="overlay-link" href="../html/{{file}}" target="_blank"></a>
+            </div>
+        {{/each}}
+    </div>
+</div>
+
+{{> footerjs}}
+<script>
+    (function (window, $, undefined) {
+        $('iframe').attr('scrolling', 'no');
+    })(this, jQuery)
+</script>
+
+</body>
+</html>
