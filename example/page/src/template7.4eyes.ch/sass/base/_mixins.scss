@@ -70,6 +70,11 @@
 	list-style: none;
 	margin: 0;
 	padding: 0;
+
+	> li {
+		margin: 0;
+		padding: 0;
+	}
 }
 
 
@@ -127,5 +132,30 @@
 	}
 	&:-ms-input-placeholder {
 		@content;
+	}
+}
+
+
+/**
+ * Implements a margin for the current element, based on current breakpoint and the defined size in the $spacer map
+ */
+@mixin spacer (
+	$size,
+	$map: $spacer,
+	$pos: $spacerPosition,
+	$name: 'auto',
+	$important: false,
+	$property: $spacerProperty
+) {
+	@include -zf-breakpoint-value($name, $map) {
+		$value: rem-calc(map-get($-zf-bp-value, $size));
+		@if $important {
+			$value: $value!important;
+		}
+		@if $pos == all {
+			#{$property}: $value;
+		} @else {
+			#{$property}-#{$pos}: $value;
+		}
 	}
 }

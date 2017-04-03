@@ -1,0 +1,46 @@
+$notification-background-color: $color-black!default;
+$notification-text-color: $color-white!default;
+
+
+.mod_notification {
+	display: none;
+	z-index: 1000;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: $color-black;
+
+	&.is-visible {
+		display: block;
+	}
+}
+
+.notification_container {
+	position: relative;
+	color: $notification-text-color;
+
+	h3 {
+		color: $notification-text-color;
+	}
+
+	p:last-of-type {
+		margin: 0;
+	}
+
+	padding: rem-calc(25) rem-calc(44) rem-calc(25) rem-calc(12);
+
+	@include breakpoint(medium) {
+		padding-left: 0;
+		padding-right: rem-calc(50);
+	}
+}
+
+.notification_close {
+	position: absolute;
+	top: rem-calc(15);
+	right: rem-calc(12);
+
+	@include breakpoint(medium) {
+		right: rem-calc(0);
+	}
+}

@@ -2,17 +2,25 @@
 @include foundation-global-styles;
 @include foundation-grid;
 @include foundation-flex-grid;
+@include foundation-flex-classes;
 @include foundation-visibility-classes;
 @include foundation-float-classes;
-@include foundation-flex-classes;
 
 @import "base/functions";
 @import "base/mixins";
 @import "base/fonts";
+
 @import "base/tags";
 
-
 @import "layout/layout";
+@import "layout/spacer";
 
-
-@import "module/module";
+@import "module/header";
+@import "module/navigation";
+@import "module/content";
+@import "module/headline";
+@import "module/text";
+@import "module/image";
+@import "module/form";
+@import "module/notification";
+@import "module/footer";

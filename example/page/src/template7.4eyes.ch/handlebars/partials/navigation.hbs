@@ -1,0 +1,61 @@
+<nav class="mod_navigation{{#if additionalClasses}} {{additionalClasses}}{{/if}}" data-navigation="init">
+    {{#if lvl1}}
+        <ul class="navigation_lvl1" role="menubar">
+            {{#each lvl1}}
+                <li
+                    {{#or active expanded additionalClasses}}class="{{#if active}}is-active{{/if}}{{#if expanded}} is-expanded{{/if}}{{#if additionalClasses}} {{additionalClasses}}{{/if}}"{{/or}}
+                    data-navigation="lvl-item"
+                >
+                    <div class="navigation_link_wrap">
+                        <a href="{{href}}" role="menuitem">
+                            <span class="navigation_label">{{#if icon}}<span class="icon-{{icon}}"></span>{{/if}}{{{label}}}</span>
+                        </a>
+                        {{#if lvl2}}
+                            <a href="javascript:void(0);" class="navigation_expand" aria-haspopup="true" data-navigation="expand"><span class="icon-plus-bullet"></span></a>
+                        {{/if}}
+                    </div>
+
+                    {{#if lvl2}}
+                        <div class="navigation_lvl2_container"{{#if expanded}} style="display: block"{{/if}} data-navigation="lvl">
+                            <ul class="navigation_lvl2" role="menubar">
+                                {{#each lvl2}}
+                                    <li
+                                        {{#or active expanded additionalClasses}}class="{{#if active}}is-active{{/if}}{{#if expanded}} is-expanded{{/if}}{{#if additionalClasses}} {{additionalClasses}}{{/if}}"{{/or}}
+                                        data-navigation="lvl-item"
+                                    >
+                                        <div class="navigation_link_wrap">
+                                            <a href="{{href}}" role="menuitem">
+                                                <span class="navigation_label">{{#if icon}}<span class="icon-{{icon}}"></span>{{/if}}{{{label}}}</span>
+                                            </a>
+                                            {{#if lvl3}}
+                                                <a href="javascript:void(0);" class="navigation_expand" aria-haspopup="true" data-navigation="expand"><span class="icon-plus-bullet"></span></a>
+                                            {{/if}}
+                                        </div>
+
+                                        {{#if lvl3}}
+                                            <div class="navigation_lvl3_container"{{#if expanded}} style="display: block"{{/if}} data-navigation="lvl">
+                                                <ul class="navigation_lvl3" role="menubar">
+                                                    {{#each lvl3}}
+                                                        <li
+                                                            {{#or active additionalClasses}}class="{{#if active}}is-active{{/if}}{{#if additionalClasses}} {{additionalClasses}}{{/if}}"{{/or}}
+                                                        >
+                                                            <div class="navigation_link_wrap">
+                                                                <a href="{{href}}" role="menuitem">
+                                                                    <span class="navigation_label">{{#if icon}}<span class="icon-{{icon}}"></span>{{/if}}{{{label}}}</span>
+                                                                </a>
+                                                            </div>
+                                                        </li>
+                                                    {{/each}}
+                                                </ul>
+                                            </div>
+                                        {{/if}}
+                                    </li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    {{/if}}
+                </li>
+            {{/each}}
+        </ul>
+    {{/if}}
+</nav>

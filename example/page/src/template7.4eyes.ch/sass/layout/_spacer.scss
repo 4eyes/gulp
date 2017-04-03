@@ -1,0 +1,35 @@
+$spacerSizes: s,m,l !default;
+$spacerPosition: bottom!default;
+$spacerProperty: margin !default;
+$spacer: (
+	small: (
+		s: 17px,
+		m: 26px,
+		l: 52px,
+	),
+	medium: (
+		s: 24px,
+		m: 37px,
+		l: 78px,
+	),
+	large: (
+		s: 24px,
+		m: 37px,
+		l: 78px,
+	)
+) !default;
+
+
+@each $bp, $bmMap in $spacer {
+	@each $size, $value in $bmMap {
+		.spacer-#{$bp}-#{$size} {
+			@include spacer($size: $size, $name: $bp, $important: true);
+		}
+	}
+}
+
+@each $size in $spacerSizes {
+	.spacer-#{$size} {
+		@include spacer($size: $size, $important: true);
+	}
+}

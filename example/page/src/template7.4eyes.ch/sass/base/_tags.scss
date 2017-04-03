@@ -1,6 +1,47 @@
 body {
 	font-size: rem-calc(16);
-	font-weight: $font-weight-light;
+	font-weight: $font-weight-regular;
+	line-height: (21 / 16);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+	font-size: rem-calc(40);
+	font-weight: $font-weight-bold;
+	line-height: 1.5;
+	margin: 0 0 pxToEm(40, 40);
+}
+
+h2 {
+	font-size: rem-calc(30);
+	font-weight: $font-weight-bold;
+	line-height: 1.5;
+	margin: 0 0 1em;
+
+	&.var_heading {
+		font-weight: $font-weight-light;
+		line-height: 1.3;
+		margin: 0 0 pxToEm(7.5, 30) 0;
+	}
+}
+
+h3 {
+	font-size: rem-calc(20);
+	font-weight: $font-weight-bold;
+	line-height: 1.5;
+	margin: 0 0 pxToEm(20, 20);
+}
+
+h4 {
+	font-size: rem-calc(16);
+	font-weight: $font-weight-bold;
+	line-height: 1.5;
+	margin: 0;
+}
+
+i, em {
+	font-style: italic;
 }
 
 b, strong {
@@ -8,11 +49,7 @@ b, strong {
 }
 
 p {
-	margin: 0 0 1em;
-
-	&:last-child {
-		margin-bottom: 0;
-	}
+	margin: 0 0 pxToEm(16, 16);
 }
 
 img[src$=".svg"] {
@@ -22,16 +59,4 @@ img[src$=".svg"] {
 a {
 	text-decoration: none;
 	color: inherit;
-}
-
-.clearfix {
-	@include clearfix
-}
-
-.visuallyhidden {
-	@include visuallyhidden;
-}
-
-.clear-block {
-	clear: both;
 }

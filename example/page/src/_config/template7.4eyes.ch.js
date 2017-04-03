@@ -1,12 +1,13 @@
 /*global modulesPath*/
 
-var gulpPathRelative = '../';
+var backPathRelative = '../';
+
 var path = require(modulesPath + 'path');
 var extend = require(modulesPath + 'extend');
 
 var projectKey = 'template7.4eyes.ch';
-var buildPath = gulpPathRelative + 'site/fileadmin/' + projectKey + '/templates/build';
-var sourcePath = gulpPathRelative + 'src/' + projectKey;
+var buildPath = backPathRelative + 'site/fileadmin/' + projectKey + '/templates/build';
+var sourcePath = backPathRelative + 'src/' + projectKey;
 
 global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
     /**
@@ -60,7 +61,7 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
                 plugins: {
                     //https://www.npmjs.com/package/autoprefixer
                     autoprefixer: require(modulesPath + 'autoprefixer')({
-                        browsers: ['last 2 versions', 'ie >= 9', 'and_chr >= 2.3']
+                        browsers: ['last 10 versions', 'ie >= 9', 'and_chr >= 2.3']
                     })
                 },
                 options: {}
@@ -124,7 +125,7 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
                     }
                 },
                 jshint: {
-                    enabled: true
+                    enabled: false
                 }
             },
             //endregion
@@ -347,33 +348,37 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
             sourcePath + '/handlebars/partials/**/**/**/*.hbs',
             sourcePath + '/handlebars/partials/**/**/**/*.data.js'
         ],
+
         source: sourcePath + '/handlebars/pages/*.hbs',
         dest: buildPath + '/html',
-        templateData: {},
-
-        //region Handlebars Data Provider
-        handlebarsDataProvider: {
-            //Configuration for the data provider function 'pages'
-            pages: {
-                path: sourcePath + '/handlebars/pages/',
-                //Exclude regex-patterns or filenames
-                exclude: [
-                    'index.hbs',
-                    'iframe.hbs',
-                    '.data.js$'
-                    //Example for a regex
-                    /*/^001/g*/
-                ]
-            }
-        },
-        //endregion
 
         //region Handlebars Options
+        partials: [
+            sourcePath + '/handlebars/partials/*.hbs',
+            sourcePath + '/handlebars/partials/**/*.hbs'
+        ],
+        helpers: require(modulesPath + 'handlebars-helpers'),
+        data: {
+            default: require(gulpPath + '/helpers/gulp/handlebarsDataProvider')(
+                projectKey,
+                {
+                    //Configuration for the data provider function 'pages'
+                    pages: {
+                        path: sourcePath + '/handlebars/pages/',
+                        //Exclude regex-patterns or filenames
+                        exclude: [
+                            'index.hbs',
+                            'iframe.hbs',
+                            '.data.js$'
+                            //Example for a regex
+                            /*/^001/g*/
+                        ]
+                    }
+                }
+            )
+        },
         options: {
-            ignorePartials: false,
-            partials: {},
-            batch: [sourcePath + '/handlebars/partials'],
-            helpers: sourcePath + '/handlebars/helpers'
+            bustCache: true
         },
         //endregion
 
@@ -425,7 +430,7 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
                     '!' + sourcePath + '/fonts/**/*.json'
                 ],
                 dest: buildPath + '/css/fonts'
-            }
+            },
             //endregion
         }
     }

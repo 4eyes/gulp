@@ -1,0 +1,20 @@
+<!-- CONTENT ELEMENT 'Form' -->
+<div class="mod_form">
+    <form action="{{form.action}}">
+        <div class="row">
+            <div class="column column-block">
+                {{> content/headline/headline headline}}
+            </div>
+        </div>
+        {{#each form.rows}}
+            <div class="row">
+                {{#each columns}}
+                    <div class="column column-block xsmall-12 large-6">
+                        {{> (lookup . 'partial' ) element}}
+                    </div>
+                {{/each}}
+            </div>
+        {{/each}}
+    </form>
+</div>
+<!-- CONTENT ELEMENT 'Form' end -->

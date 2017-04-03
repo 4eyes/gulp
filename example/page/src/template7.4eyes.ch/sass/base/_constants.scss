@@ -2,17 +2,42 @@
  * COLORS (Naming suggestions under: http://chir.ag/projects/name-that-color/)
  **/
 
-$colorWhite: #FFFFFF;
-$colorBlack: #000000;
+$color-white: #FFFFFF;
+$color-black: #000000;
 
 /**
  * TYPOGRAPHY
  **/
-$font-family-base: Helvetica, Arial, sans-serif;
+$font-family-base: Arial, sans-serif;
 $font-weight-light: 300;
-$font-weight-normal: 500;
+$font-weight-regular: 500;
 $font-weight-bold: 700;
 
+
+/**
+ * SPACER
+ **/
+$spacerSizes: s,m,l;
+$spacerPosition: bottom;
+$spacerProperty: margin;
+
+$spacer: (
+	small: (
+		s: 0px,
+		m: 0px,
+		l: 0px
+	),
+	medium: (
+		s: 0px,
+		m: 0px,
+		l: 0px
+	),
+	large: (
+		s: 0px,
+		m: 0px,
+		l: 0px
+	)
+);
 
 /**
  * FOUNDATION
@@ -22,16 +47,16 @@ $font-weight-bold: 700;
 // ---------
 
 $global-font-size: 62.5%;
-$global-width: rem-calc(1170);
+$global-width: rem-calc(1200);
 $global-lineheight: 1.5;
 
-$body-background: $colorWhite;
-$body-font-color: $colorBlack;
+$body-background: $color-white;
+$body-font-color: $color-black;
 $body-font-family: $font-family-base;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
-$global-weight-normal: $font-weight-normal;
+$global-weight-normal: $font-weight-regular;
 $global-weight-bold: $font-weight-bold;
 $global-radius: 0;
 $global-text-direction: ltr;
@@ -55,12 +80,11 @@ $breakpoint-classes: (small medium large);
 // 3. The Grid
 // -----------
 
+$grid-row-width: $global-width;
+$grid-column-count: 12;
 $grid-column-gutter: (
 	small: 20px,
 	medium: 30px,
 );
-$grid-row-width: $global-width + (rem-calc(-zf-get-bp-val($grid-column-gutter, medium)));
-$grid-column-count: 12;
-
 $grid-column-align-edge: true;
 $block-grid-max: 8;

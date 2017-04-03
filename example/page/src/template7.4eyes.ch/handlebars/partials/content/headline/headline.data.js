@@ -5,10 +5,9 @@ var _ = require(modulesPath + 'lodash'),
     ;
 
 var data = {
-    tag: 'a',
-    label: 'mehr',
-    href: '#',
-    additionalAttributes: []
+    centered: true,
+    headline: 'Headline',
+    header: 'Überschrift'
 };
 
 module.exports = data;
