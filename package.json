@@ -40,6 +40,8 @@
     "gulp-prettify": "^0.5.0",
     "gulp-remember": "~0.3.0",
     "gulp-rename": "~1.2.2",
+    "gulp-svgmin": "^1.2.4",
+    "gulp-svgstore": "^6.1.0",
     "gulp-uglify": "~2.0.0",
     "gulp-w3cjs": "^1.2.0",
     "jshint": "^2.9.2",

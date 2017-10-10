@@ -371,7 +371,20 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
 			}
 			//endregion
 		}
-	}
+	},
+	/**
+     * SVG
+     */
+    svg: {
+        watch: sourcePath + '/svg',
+        source: sourcePath + '/svg/*.svg',
+		dest: buildPath + '/svg',
+		options: {
+            fileName: 'icons.svg',
+            inlineSvg: false
+		}
+        //endregion
+    }
 
 	/**
 	 * CSSINLINER
