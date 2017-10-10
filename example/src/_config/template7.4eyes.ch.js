@@ -379,9 +379,14 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
         watch: sourcePath + '/svg',
         source: sourcePath + '/svg/*.svg',
 		dest: buildPath + '/svg',
-		options: {
-            fileName: 'icons.svg',
-            inlineSvg: false
+		//region Rename Options
+		rename: {
+            fileName: 'icons.svg'
+        },
+		//endregion
+		//region Svgstore Options
+		svgstore: {
+			inlineSvg: true
 		}
         //endregion
     }
