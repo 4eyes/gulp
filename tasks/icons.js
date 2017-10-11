@@ -3,10 +3,9 @@ var plumber 	 = require('gulp-plumber');
 var notify 		 = require('gulp-notify');
 var svgmin       = require('gulp-svgmin');
 var svgstore     = require('gulp-svgstore');
-var rename       = require("gulp-rename");
 var configLoader = require('../helpers/gulp/configLoader');
 
-var taskName = 'svg-icons-generator';
+var taskName = 'icons';
 
 configLoader(taskName, function(projectName, conf) {
 
@@ -30,7 +29,6 @@ configLoader(taskName, function(projectName, conf) {
             }))
             .pipe(svgmin())
             .pipe(svgstore(conf.options))
-            .pipe(rename(conf.fileName))
             .pipe(plumber.stop())
             .pipe(gulp.dest(conf.dest))
             .pipe(notify(function (files) {
