@@ -379,6 +379,14 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
         watch: sourcePath + '/icons',
         source: sourcePath + '/icons/*.svg',
 		dest: buildPath + '/icons',
+        //region Svgmin Options
+        svgmin: {
+            plugins: [{
+                removeTitle: true
+            }]
+        },
+		//endregion
+
 		//region Svgstore Options
 		svgstore: {
 			inlineSvg: true

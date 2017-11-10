@@ -27,8 +27,8 @@ configLoader(taskName, function(projectName, conf) {
                     this.emit('end');
                 }
             }))
-            .pipe(svgmin())
-            .pipe(svgstore(conf.options))
+            .pipe(svgmin(conf.svgmin))
+            .pipe(svgstore(conf.svgstore))
             .pipe(plumber.stop())
             .pipe(gulp.dest(conf.dest))
             .pipe(notify(function (files) {
