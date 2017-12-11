@@ -383,6 +383,10 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
         svgmin: {
             plugins: [{
                 removeTitle: true
+            }, {
+                removeAttrs: {
+                    attrs: '*:(fill|stroke)'
+                }
             }]
         },
 		//endregion
