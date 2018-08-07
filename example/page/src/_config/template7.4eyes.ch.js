@@ -137,9 +137,9 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
                 ],
                 order: {
                     files: [
-                        'jquery-2.1.3.js',
-                        'foundation-6.3.1/foundation.core.js',
-                        'foundation-6.3.1/foundation.util.*.js'
+                        'jquery-3.3.1.js',
+                        'foundation-6.4.3/foundation.core.js',
+                        'foundation-6.4.3/foundation.util.*.js'
                     ],
                     options: {
                         base: sourcePath + '/js/footer/vendor/'

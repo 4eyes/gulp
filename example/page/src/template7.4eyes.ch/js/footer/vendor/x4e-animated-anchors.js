@@ -14,7 +14,7 @@
         options = options || {};
         $.extend(true, this.Options, options);
 
-        $(window).load(function () {
+        $(window).on('load', function () {
             self.init();
         });
 
