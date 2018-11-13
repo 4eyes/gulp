@@ -1,7 +1,7 @@
 'use strict';
 
 var _ = require(modulesPath + 'lodash'),
-	requireNew = require(modulesPath + 'require-new')
+	requireNew = require(modulesPath + 'import-fresh')
 	;
 
 var data = {

@@ -1,29 +1,35 @@
-var fs = require('fs');
-var extend = require('extend');
-
-var handlebarsDataProvider = function (projectName, conf) {
-    var DefaultTemplateData = {
+let fs = require('fs');
+let handlebarsDataProvider = function (projectName, conf) {
+    let DefaultTemplateData = {
         init: function (conf) {
-            var templateData = {};
-            for (var property in this.Data) {
-                templateData[property] = this.Data[property](conf[property], projectName);
+            let templateData = {};
+            for (let property in this.Data) {
+                if (this.Data.hasOwnProperty(property)) {
+                    if (templateData.hasOwnProperty(property)) {
+                        templateData[property] = this.Data[property](conf[property], projectName);
+                    }
+                }
             }
             return templateData;
         },
         Data: {
             pages: function (conf) {
-                var files = fs.readdirSync(conf.path);
-                var out = [];
-                for (var i in files) {
-                    var isToExclude = false;
-                    for (var k in conf.exclude) {
-                        if (files[i].match(conf.exclude[k]) !== null) {
-                            isToExclude = true;
+                let files = fs.readdirSync(conf.path);
+                let out = [];
+                for (let i in files) {
+                    if (files.hasOwnProperty(i)) {
+                        let isToExclude = false;
+                        for (let k in conf.exclude) {
+                            if (conf.exclude.hasOwnProperty(k)) {
+                                if (files[i].match(conf.exclude[k]) !== null) {
+                                    isToExclude = true;
+                                }
+                            }
                         }
-                    }
-                    if (!isToExclude) {
-                        var htmlfile = files[i].replace(/hbs$/g, 'html');
-                        out.push({file: htmlfile});
+                        if (!isToExclude) {
+                            let htmlfile = files[i].replace(/hbs$/g, 'html');
+                            out.push({file: htmlfile});
+                        }
                     }
                 }
 

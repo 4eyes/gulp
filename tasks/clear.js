@@ -1,9 +1,15 @@
-var gulp 			= require('gulp');
-var cleaning 		= require('gulp-initial-cleaning');
-var configLoader 	= require('../helpers/gulp/configLoader');
+let gulp = require('gulp');
+let cleaning = require('gulp-initial-cleaning');
+let configLoader = require('../helpers/gulp/configLoader');
 
-var taskName = 'clear';
+let taskName = 'clear';
 
-configLoader(taskName, function(projectName, conf){
-	cleaning(conf.options);
+configLoader(taskName, function (projectName, conf) {
+    global.x4e.tasks.preInitial.push(taskName + '-' + projectName);
+
+    let task = function (done) {
+        cleaning(conf.options);
+        done();
+    };
+    gulp.task(taskName + '-' + projectName, task);
 });

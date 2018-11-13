@@ -2,7 +2,6 @@
 
 var backPathRelative = '../';
 
-var path = require(modulesPath + 'path');
 var extend = require(modulesPath + 'extend');
 
 var projectKey = 'template7.4eyes.ch';
