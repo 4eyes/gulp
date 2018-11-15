@@ -1,12 +1,12 @@
-/*global modulesPath*/
+/*global modulesPath, gulpPath */
 
-var backPathRelative = '../';
+let backPathRelative = '../';
 
-var extend = require(modulesPath + 'extend');
+let extend = require(modulesPath + 'extend');
 
-var projectKey = 'template7.4eyes.ch';
-var buildPath = backPathRelative + 'site/fileadmin/' + projectKey + '/templates/build';
-var sourcePath = backPathRelative + 'src/' + projectKey;
+let projectKey = 'template7.4eyes.ch';
+let buildPath = backPathRelative + 'site/fileadmin/' + projectKey + '/templates/build';
+let sourcePath = backPathRelative + 'src/' + projectKey;
 
 global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
     /**

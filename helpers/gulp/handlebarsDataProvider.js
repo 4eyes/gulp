@@ -1,13 +1,12 @@
 let fs = require('fs');
+
 let handlebarsDataProvider = function (projectName, conf) {
     let DefaultTemplateData = {
         init: function (conf) {
             let templateData = {};
             for (let property in this.Data) {
                 if (this.Data.hasOwnProperty(property)) {
-                    if (templateData.hasOwnProperty(property)) {
-                        templateData[property] = this.Data[property](conf[property], projectName);
-                    }
+                    templateData[property] = this.Data[property](conf[property], projectName);
                 }
             }
             return templateData;
