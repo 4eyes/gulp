@@ -315,7 +315,7 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
             },
             // See: https://github.com/imagemin/imagemin-svgo and https://github.com/svg/svgo#what-it-can-do
             svgo: {
-                options: [
+                plugins: [
                     {'removeDimensions': true},
                     {'removeDoctype': true},
                     {'removeXMLProcInst': false},
@@ -329,6 +329,31 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
         //endregion
         source: sourcePath + '/img/**',
         dest: buildPath + '/img'
+    },
+
+    /**
+     * ICONS
+     */
+    icons: {
+        source: sourcePath + '/icons/*.svg',
+        htmlSource: buildPath + '/**/*.html',
+        dest: buildPath,
+        //region Svgmin Options
+        svgmin: {
+            plugins: [
+                {removeTitle: true},
+                {removeAttrs:
+                        {attrs: '*:(fill|stroke)'}
+                }
+            ]
+        },
+        //endregion
+
+        //region Svgstore Options
+        svgstore: {
+            inlineSvg: true
+        }
+        //endregion
     },
 
     /**

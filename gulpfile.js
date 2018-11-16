@@ -61,6 +61,7 @@ gulp.task('==== initial ====', function (done) {
 gulp.task('==== postInitial ====', function (done) {
     let args = [];
     if (global.x4e.tasks.postInitial.length > 0) {
+        args = global.x4e.tasks.postInitial;
         gulp.parallel(args)(done);
     } else {
         done();
