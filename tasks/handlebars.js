@@ -75,5 +75,5 @@ configLoader(taskName, function (projectName, conf) {
             ;
     };
 
-    gulp.task(taskName + '-' + projectName, gulp.series(task, 'icons-' + projectName));
+    gulp.task(taskName + '-' + projectName, gulp.series(task, 'icons-inline-' + projectName));
 });

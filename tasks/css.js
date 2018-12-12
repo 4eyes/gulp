@@ -14,7 +14,7 @@ let taskName = 'css';
 
 configLoader(taskName, function (projectName, conf) {
 
-    global.x4e.tasks.initial.push(taskName + '-' + projectName);
+    global.x4e.tasks.postInitial.push(taskName + '-' + projectName);
     global.x4e.tasks.watch.push({taskName: taskName + '-' + projectName, options: conf.watch});
 
     conf.plugins.postcss.processedPlugins = (function (plugins) {

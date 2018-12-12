@@ -1,6 +1,4 @@
 let gulp         = require('gulp');
-let plumber 	 = require('gulp-plumber');
-let notify 		 = require('gulp-notify');
 let svgmin       = require('gulp-svgmin');
 let svgstore     = require('gulp-svgstore');
 let inject       = require('gulp-inject');
@@ -9,11 +7,12 @@ let configLoader = require('../helpers/gulp/configLoader');
 let taskName = 'icons';
 
 configLoader(taskName, function(projectName, conf) {
-
-    let task = function () {
+    let inlineIconsTask = function () {
         let svgs = gulp
             .src(conf.source)
             .pipe(svgmin(conf.svgmin))
+        ;
+        let storedSvgs = svgs
             .pipe(svgstore(conf.svgstore))
         ;
 
@@ -23,10 +22,17 @@ configLoader(taskName, function(projectName, conf) {
 
         return gulp
             .src(conf.htmlSource)
-            .pipe(inject(svgs, { transform: fileContents }))
+            .pipe(inject(storedSvgs, { transform: fileContents }))
             .pipe(gulp.dest(conf.dest), {base: './'})
-        ;
+            ;
+    };
+    let svgTask = function () {
+        return gulp
+            .src(conf.source)
+            .pipe(svgstore())
+            .pipe(gulp.dest(conf.destSvg + '/'))
     };
 
-    gulp.task(taskName + '-' + projectName, task);
+    gulp.task(taskName + '-inline-' + projectName, inlineIconsTask);
+    gulp.task(taskName + '-svg-' + projectName, svgTask);
 });
