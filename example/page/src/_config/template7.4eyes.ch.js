@@ -61,6 +61,9 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
                     //https://www.npmjs.com/package/autoprefixer
                     autoprefixer: require(modulesPath + 'autoprefixer')({
                         browsers: ['last 10 versions', 'ie >= 9', 'and_chr >= 2.3']
+                    }),
+                    postcssSVG: require(modulesPath + 'postcss-svg')({
+                        dirs: [buildPath + '/img/']
                     })
                 },
                 options: {}
@@ -338,6 +341,7 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
         source: sourcePath + '/icons/*.svg',
         htmlSource: buildPath + '/**/*.html',
         dest: buildPath,
+        destSvg: buildPath + '/img',
         //region Svgmin Options
         svgmin: {
             plugins: [
