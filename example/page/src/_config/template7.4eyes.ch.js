@@ -60,7 +60,7 @@ global.x4e.config[projectKey] = extend(true, global.x4e.config[projectKey], {
                 plugins: {
                     //https://www.npmjs.com/package/autoprefixer
                     autoprefixer: require(modulesPath + 'autoprefixer')({
-                        browsers: ['last 10 versions', 'ie >= 9', 'and_chr >= 2.3']
+                        browserslist: ['last 10 versions', 'ie >= 9', 'and_chr >= 2.3']
                     }),
                     postcssSVG: require(modulesPath + 'postcss-svg')({
                         dirs: [buildPath + '/img/']

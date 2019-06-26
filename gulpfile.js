@@ -69,3 +69,4 @@ gulp.task('==== postInitial ====', function (done) {
 });
 
 gulp.task('default', gulp.series('==== preInitial ====', '==== initial ====', '==== postInitial ====', '==== watch ===='));
+gulp.task('build', gulp.series('==== preInitial ====', '==== initial ====', '==== postInitial ===='));
