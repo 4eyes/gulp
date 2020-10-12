@@ -17,17 +17,6 @@ configLoader(taskName, function (projectName, conf) {
     global.x4e.tasks.postInitial.push(taskName + '-' + projectName);
     global.x4e.tasks.watch.push({taskName: taskName + '-' + projectName, options: conf.watch});
 
-    conf.plugins.postcss.processedPlugins = (function (plugins) {
-        let out = [];
-
-        for (let i in plugins) {
-            if (plugins.hasOwnProperty(i)) {
-                out.push(plugins[i]);
-            }
-        }
-        return out;
-    })(conf.plugins.postcss.plugins);
-
     let task = function (done) {
         // Process and minify all SASS files
         let baseProcess = gulp.src(conf.sources)
@@ -45,7 +34,7 @@ configLoader(taskName, function (projectName, conf) {
             }))
             .pipe(gulpif(conf.plugins.sourcemaps, sourcemaps.init()))
             .pipe(sass(conf.plugins.sass.options))
-            .pipe(postcss(conf.plugins.postcss.processedPlugins, conf.plugins.postcss.options))
+            .pipe(postcss(conf.plugins.postcss.plugins, conf.plugins.postcss.options))
         ;
 
         let processUniminified = baseProcess
